@@ -17,7 +17,7 @@ public class Barman extends Thread {
 	public Barman(String name, Backlog orders) {
 		this(name, orders, 5);
 	}
-	
+
 	public Barman(String name, Backlog orders, int minuteOfWork) {
 		this.name = name;
 		this.orders = orders;
@@ -39,11 +39,37 @@ public class Barman extends Thread {
 
 			cCocktail = orders.dequeue();
 			if (cCocktail != null) {
+
+				for (Bottle bottle : cCocktail.getBottles()) {
+					try {
+						boolean bottleAvailable = false;
+						while (!bottleAvailable) {
+							bottleAvailable = bottle.take(5000);
+							if (!bottleAvailable) {
+								System.err
+										.println(String.format("%s can't take %s now because it has already be taken !",
+												this.name, bottle.getName()));
+								Thread.sleep(200);
+							}
+						}
+
+						System.out.println(String.format("%s will take %s", this.name, bottle));
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+
 				this.drinksPrepared++;
 				String message = String.format(
 						"%s has prepared  \t%s\t\tHe has prepared %d drinks and will continue to work for %d seconds",
 						this.name, cCocktail, this.drinksPrepared, seconds);
 				System.out.println(message);
+
+				for (Bottle bottle : cCocktail.getBottles()) {
+					System.out.println(String.format("%s released %s", this.name, bottle));
+					bottle.release();
+				}
+
 			}
 
 			try {

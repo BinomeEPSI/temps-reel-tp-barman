@@ -1,21 +1,23 @@
 package fr.epsi.binome;
 
+import java.util.ArrayList;
+
 public class Cocktail {
 
 	private String name;
-	private String[] ingredients;
+	private ArrayList<Bottle> bottles;
 
-	public Cocktail(String name, String[] ingredients) {
+	public Cocktail(String name, ArrayList<Bottle> bottles) {
 		this.name = name;
-		this.ingredients = ingredients;
+		this.bottles = bottles;
 	}
 
 	public String getName() {
 		return this.name;
 	}
 
-	public String[] getIngredients() {
-		return this.ingredients;
+	public ArrayList<Bottle> getBottles() {
+		return this.bottles;
 	}
 
 	@Override
@@ -23,8 +25,8 @@ public class Cocktail {
 		StringBuilder sb = new StringBuilder();
 		sb.append(this.name);
 		sb.append(" (");
-		for (String ingredient : this.ingredients) {
-			sb.append(ingredient).append(" ");
+		for (Bottle bottle : this.bottles) {
+			sb.append(bottle.getName()).append(" ");
 		}
 		return sb.append(")").toString();
 	}
