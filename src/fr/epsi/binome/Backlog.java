@@ -21,4 +21,8 @@ public class Backlog {
 			return this.orders.pollFirst();	
 		}
 	}
+	
+	public boolean isEmpty() {
+		return this.orders.isEmpty();
+	}
 }
