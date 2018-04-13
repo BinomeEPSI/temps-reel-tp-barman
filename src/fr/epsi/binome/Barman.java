@@ -49,7 +49,7 @@ public class Barman extends Thread {
 				System.err.println("ERR --> " + e.getMessage());
 			}
 		} while (seconds > 0);
-		
+
 		String message = String.format("%s is out with %d drinks prepared !", this.name, this.drinksPrepared);
 		System.out.println(message);
 	}
