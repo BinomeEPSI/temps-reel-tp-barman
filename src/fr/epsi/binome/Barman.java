@@ -15,11 +15,14 @@ public class Barman extends Thread {
 	private int drinksPrepared;
 
 	public Barman(String name, Backlog orders) {
-		super();
+		this(name, orders, 5);
+	}
+	
+	public Barman(String name, Backlog orders, int minuteOfWork) {
 		this.name = name;
 		this.orders = orders;
 		Calendar work = Calendar.getInstance();
-		work.add(Calendar.SECOND, 30);
+		work.add(Calendar.MINUTE, minuteOfWork);
 		this.workDay = work.getTime();
 		this.drinksPrepared = 0;
 	}
