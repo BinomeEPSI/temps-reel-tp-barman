@@ -26,6 +26,6 @@ public class Cocktail {
 		for (String ingredient: this.ingredients) {
 			sb.append(ingredient).append(" ");		
 		}
-		return sb.append(" ").toString();
+		return sb.append(")").toString();
 	}
 }
