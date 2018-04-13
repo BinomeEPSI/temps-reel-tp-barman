@@ -1,14 +1,24 @@
 package fr.epsi.binome;
 
+import java.util.LinkedList;
+
 public class Backlog {
 	
-	private Cocktail cocktail;
+	private LinkedList<Cocktail> orders;
+	
+	public Backlog() {
+		this.orders = new LinkedList<>();
+	}
 	
 	public void enqueue(Cocktail cocktail) {
-		this.cocktail = cocktail;
+		synchronized (this.orders) {
+			this.orders.add(cocktail);	
+		}
 	}
 	
 	public Cocktail dequeue() {
-		return null;
+		synchronized (this.orders) {
+			return this.orders.pollFirst();	
+		}
 	}
 }
