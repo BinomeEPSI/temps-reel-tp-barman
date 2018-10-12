@@ -1,0 +1,9 @@
+version: "3.1"
+
+services:
+  tp-barman:
+    container_name: tp-barman
+    build: .
+    volumes:
+      - ./src/:/usr/src/app
+      - ./bin:/usr/src/bin
