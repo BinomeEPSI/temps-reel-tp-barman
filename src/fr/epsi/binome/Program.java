@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class Program {
 
-	private static final int ORDER_NUM = 200;
+	private static final int ORDER_NUM = 20;
 	private static final long ORDER_INTERVAL = 100;
 
 	public static void main(String[] args) throws InterruptedException {
@@ -40,8 +40,15 @@ public class Program {
 			orders.enqueue(carte[choice]);
 			Thread.sleep(ORDER_INTERVAL);
 		}
+
+		System.out.println("Ici ca bloque");
+
 		for (Barman member : team) {
 			member.join();
 		}
+
+		System.out.println("Ca ne s'affichera pas");
+
+		
 	}
 }
